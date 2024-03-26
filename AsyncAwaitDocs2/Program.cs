@@ -16,19 +16,16 @@
             Task<Egg> eggsTask = FryEggsAsync(2);
             Task<Bacon> baconTask = FryBaconAsync(3);
             Task<Toast> toastTask = MakeToastWithButterAndJamAsync(2);
+                      
+            
+            await Task.WhenAll(eggsTask, baconTask, toastTask);
 
-            Toast toast = await toastTask;
-            ApplyButter(toast);
-            ApplyJam(toast);
+            Console.WriteLine("eggs are ready");
+            Console.WriteLine("bacon is ready");
             Console.WriteLine("toast is ready");
 
             Juice oj = PourOJ();
             Console.WriteLine("OJ is ready");
-
-            Egg eggs = await eggsTask;
-            Console.WriteLine("eggs are ready");
-            Bacon bacon = await baconTask;
-            Console.WriteLine("bacon is ready");
 
             Console.WriteLine("Breakfast is ready");
 
@@ -54,8 +51,8 @@
             }
             Console.WriteLine("Start toasting...");
             await Task.Delay(2000);
-            Console.WriteLine("Fire! Toast is ruined!");
-            throw new InvalidOperationException("The toaster is on fire");
+            //Console.WriteLine("Fire! Toast is ruined!");
+            //throw new InvalidOperationException("The toaster is on fire");
             await Task.Delay(1000);
             Console.WriteLine("Remove toast from toaster");
 
