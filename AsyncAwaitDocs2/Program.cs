@@ -53,7 +53,10 @@
                 Console.WriteLine("Putting slice of bread in the toaster");
             }
             Console.WriteLine("Start toasting...");
-            Task.Delay(3000).Wait();
+            await Task.Delay(2000);
+            Console.WriteLine("Fire! Toast is ruined!");
+            throw new InvalidOperationException("The toaster is on fire");
+            await Task.Delay(1000);
             Console.WriteLine("Remove toast from toaster");
 
             return new Toast();
