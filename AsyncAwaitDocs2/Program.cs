@@ -8,18 +8,18 @@
         internal class Juice { }
         internal class Toast { }
 
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             Coffee cup = PourCoffee();
             Console.WriteLine("coffee is ready");
 
-            Egg eggs = FryEggs(2);
+            Egg eggs = await FryEggsAsync(2);
             Console.WriteLine("eggs are ready");
 
-            Bacon bacon = FryBacon(3);
+            Bacon bacon = await FryBaconAsync(3);
             Console.WriteLine("bacon is ready");
 
-            Toast toast = ToastBread(2);
+            Toast toast = await ToastBreadAsync(2);
             ApplyButter(toast);
             ApplyJam(toast);
             Console.WriteLine("toast is ready");
@@ -28,7 +28,6 @@
             Console.WriteLine("OJ is ready");
 
             Console.WriteLine("Breakfast is ready");
-
 
         }
 
@@ -44,7 +43,7 @@
         private static void ApplyButter(Toast toast) =>
             Console.WriteLine("Putting button on the toast");
 
-        private static Toast ToastBread(int slices)
+        private static async Task<Toast> ToastBreadAsync(int slices)
         {
             for(int slice = 0; slice < slices; slice++) 
             {
@@ -57,7 +56,7 @@
             return new Toast();
         }
 
-        private static Bacon FryBacon(int slices)
+        private static async Task<Bacon> FryBaconAsync(int slices)
         {
             Console.WriteLine($"putting {slices} slices of bacon in the pan");
             Console.WriteLine("cooking the first side of bacon...");
@@ -74,7 +73,7 @@
             return new Bacon();
         }
 
-        private static Egg FryEggs(int howMany)
+        private static async Task<Egg> FryEggsAsync(int howMany)
         {
             Console.WriteLine("Warming the egg pan...");
             Task.Delay(3000).Wait();
